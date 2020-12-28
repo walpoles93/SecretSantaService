@@ -12,6 +12,10 @@ namespace SecretSantaService.Infrastructure.Persistence.Configurations
                 .HasMaxLength(200)
                 .IsRequired();
 
+            builder.Property(pm => pm.Email)
+                .HasMaxLength(200)
+                .IsRequired();
+
             builder.Property(pm => pm.Address)
                 .HasMaxLength(500)
                 .IsRequired();

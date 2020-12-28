@@ -25,7 +25,7 @@ namespace SecretSantaService.Application.Commands.CreateParty
         {
             var party = new Party(request.Name, request.Date);
             foreach (var partyMember in request.PartyMembers)
-                party.AddPartyMember(partyMember.Name, partyMember.Address);
+                party.AddPartyMember(partyMember.Name, partyMember.Email, partyMember.Address);
 
             _dbContext.Parties.Add(party);
             await _dbContext.SaveChangesAsync(cancellationToken);

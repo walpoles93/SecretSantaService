@@ -69,6 +69,12 @@
             class="pt-0 mt-0"
           ></v-text-field>
           <v-text-field
+            label="Email"
+            v-model="member.email"
+            hide-details="auto"
+            :rules="[v => (!!v) || 'Email must not be empty']"
+          ></v-text-field>
+          <v-text-field
             label="Address"
             v-model="member.address"
             hide-details="auto"
@@ -114,6 +120,7 @@ export default {
         partyMembers: [
           {
             name: '',
+            email: '',
             address: ''
           }
         ]
@@ -129,6 +136,7 @@ export default {
     onClickAdd() {
       this.form.partyMembers.push({
         name: '',
+        email: '',
         address: ''
       })
     },

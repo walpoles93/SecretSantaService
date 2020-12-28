@@ -13,6 +13,7 @@ namespace SecretSantaService.Application.Commands.CreateParty
         public class CreatePartyMember
         {
             public string Name { get; set; }
+            public string Email { get; set; }
             public string Address { get; set; }
         }
     }

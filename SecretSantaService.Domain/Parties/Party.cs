@@ -20,9 +20,9 @@ namespace SecretSantaService.Domain.Parties
         public DateTime Date { get; private set; }
         public IReadOnlyCollection<PartyMember> PartyMembers => _partyMembers;
 
-        public void AddPartyMember(string name, string address)
+        public void AddPartyMember(string name, string email, string address)
         {
-            _partyMembers.Add(new PartyMember(name, address));
+            _partyMembers.Add(new PartyMember(name, email, address));
         }
     }
 }

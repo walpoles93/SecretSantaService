@@ -16,6 +16,11 @@ namespace SecretSantaService.Application.Commands.CreateParty
                 .NotNull()
                 .NotEmpty();
 
+            RuleFor(c => c.Email)
+                .NotNull()
+                .NotEmpty()
+                .EmailAddress();
+
             RuleFor(c => c.Address)
                 .NotNull()
                 .NotEmpty();
