@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  secretsantaservice.db:
+    image: "mcr.microsoft.com/mssql/server:2017-latest"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=gE7wG4bP4sL8hJ8e
+    ports:
+      - 1433:1433
+
+  secretsantaservice.web:
+    image: ${DOCKER_REGISTRY-}secretsantaserviceweb
+    build:
+      context: .
+      dockerfile: SecretSantaService.Web/Dockerfile
+    depends_on:
+      - secretsantaservice.db
