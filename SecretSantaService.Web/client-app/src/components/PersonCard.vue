@@ -71,7 +71,7 @@
 
 <script>
 export default {
-  name: "PersonCard",
+  name: 'PersonCard',
   props: ['value'],
   data() {
     return {
@@ -87,7 +87,7 @@ export default {
       this.hasSaved = true;
     },
     onDelete() {
-      this.$emit("delete");
+      this.$emit('delete');
     },
     onUpdate(key, value) {
       this.$emit('input', { ...this.value, [key]: value })
