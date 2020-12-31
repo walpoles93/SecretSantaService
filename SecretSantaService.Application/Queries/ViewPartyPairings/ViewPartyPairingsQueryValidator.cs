@@ -2,17 +2,17 @@
 using SecretSantaService.Application.Common.Interfaces;
 using SecretSantaService.Application.Common.Services;
 
-namespace SecretSantaService.Application.Queries.ViewPartyLinks
+namespace SecretSantaService.Application.Queries.ViewPartyPairings
 {
-    public class ViewPartyLinksValidator : RequestValidator<ViewPartyLinksQuery>
+    public class ViewPartyPairingsQueryValidator : RequestValidator<ViewPartyPairingsQuery>
     {
-        public ViewPartyLinksValidator(IApplicationDbContext dbContext) : base(dbContext)
+        public ViewPartyPairingsQueryValidator(IApplicationDbContext dbContext) : base(dbContext)
         {
         }
 
         protected override void ExecuteRules()
         {
-            RuleFor(q => q.PartyName)
+            RuleFor(q => q.Name)
                 .NotNull()
                 .NotEmpty();
         }
