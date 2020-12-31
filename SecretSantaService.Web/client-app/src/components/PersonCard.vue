@@ -68,17 +68,7 @@
     </v-snackbar>
   </v-card>
 </template>
-<style lang="scss">
-.valid .v-messages.theme--dark.error--text,
-.valid .v-label.theme--dark.error--text {
-  color: white !important;
-  font-weight: bold;
-}
 
-.card .v-toolbar__content {
-  height: 84px !important;
-}
-</style>
 <script>
 export default {
   name: "PersonCard",
@@ -96,9 +86,6 @@ export default {
       this.isEditing = !this.isEditing;
       this.hasSaved = true;
     },
-    submit() {
-      this.$refs.observer.validate();
-    },
     onDelete() {
       this.$emit("delete");
     },
@@ -107,5 +94,16 @@ export default {
     }
   }
 };
-
 </script>
+
+<style lang="scss" scoped>
+.valid .v-messages.theme--dark.error--text,
+.valid .v-label.theme--dark.error--text {
+  color: white !important;
+  font-weight: bold;
+}
+
+.card .v-toolbar__content {
+  height: 84px !important;
+}
+</style>
