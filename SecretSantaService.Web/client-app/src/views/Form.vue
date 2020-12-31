@@ -80,16 +80,28 @@
           </v-row>
 
           <PersonCard
-            v-for="(person, index) in people"
+            v-for="(person, index) in partyMembers"
             :key="index"
-            v-model="people[index]"
+            v-model="partyMembers[index]"
             @delete="onDelete(index)"
           />
 
-          <v-btn block color="primary" :disabled="!isValid || !allPersonCardsValid">Create Party</v-btn>
+          <v-btn 
+            block 
+            color="primary" 
+            :disabled="!isValid || !allPersonCardsValid" 
+            @click="onClickCreateParty"
+            :loading="isSaving"
+          >
+            Create Party
+          </v-btn>
         </v-col>
       </v-row>
     </v-form>
+
+    <v-snackbar v-model="hasError" color="error">
+      An error ocurred while creating your party. Please check your information and try again.
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -101,21 +113,43 @@ export default {
     name: '',
     date: new Date().toISOString().substr(0, 10),
     menu: false,
-    people: [{ name: '', address: '', email: '' }],
+    partyMembers: [{ name: '', address: '', email: '' }],
     isValid: false,
+    isSaving: false,
+    hasError: false,
   }),
   methods: {
     onClickAdd() {
-      this.people.push({ name: '', address: '', email: '' });
+      this.partyMembers.push({ name: '', address: '', email: '' });
     },
     onDelete(index) {
-      const people = this.people;
-      this.people = [...people.slice(0, index), ...people.slice(index + 1)];
-    }
+      const partyMembers = this.partyMembers;
+      this.partyMembers = [...partyMembers.slice(0, index), ...partyMembers.slice(index + 1)];
+    },
+    async onClickCreateParty() {
+      this.isSaving = true
+
+      try {
+        await this.$axios.post('/api/parties', {
+          name: this.name,
+          date: this.date,
+          partyMembers: this.partyMembers,
+        })
+
+        this.$router.push({
+          name: 'confirmation',
+          query: { name: this.name }
+        })
+      } catch {
+        this.hasError = true
+      }
+
+      this.isSaving = false
+    },
   },
   computed: {
     allPersonCardsValid() {
-      return this.people
+      return this.partyMembers
         .map(p => !!p.name && !!p.address && !!p.email)
         .every(p => p)
     },

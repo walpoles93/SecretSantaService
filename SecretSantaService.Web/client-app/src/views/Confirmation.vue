@@ -35,5 +35,10 @@ export default {
     HappySanta,
     Snow
   },
+  mounted() {
+    if(!this.$route.query.name) {
+      this.$router.push('form')
+    }
+  }
 };
 </script>
