@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using SecretSantaService.Application.Common.Interfaces;
 using SecretSantaService.Application.Common.Services;
-using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,9 +20,6 @@ namespace SecretSantaService.Application.Commands.CreateParty
                 .NotNull()
                 .NotEmpty()
                 .MustAsync(BeUniqueName);
-
-            RuleFor(c => c.Date)
-                .GreaterThanOrEqualTo(DateTime.UtcNow);
 
             RuleFor(c => c.PartyMembers)
                 .NotNull()

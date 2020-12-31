@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SecretSantaService.Application.Commands.CreateParty;
+using SecretSantaService.Application.Commands.EmailPartyMembers;
 using System;
 using System.Threading.Tasks;
 
@@ -19,5 +20,8 @@ namespace SecretSantaService.Web.Controllers
 
         [HttpPost]
         public async Task<Unit> CreateParty(CreatePartyCommand command) => await _mediator.Send(command);
+
+        [HttpPost("EmailPartyMembers")]
+        public async Task<Unit> SendEmail(EmailPartyMembersCommand command) => await _mediator.Send(command);
     }
 }

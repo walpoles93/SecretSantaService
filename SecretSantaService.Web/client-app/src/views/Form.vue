@@ -160,7 +160,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .heading-text {
   font-family: poppins, sans-serif;
   font-weight: 500;

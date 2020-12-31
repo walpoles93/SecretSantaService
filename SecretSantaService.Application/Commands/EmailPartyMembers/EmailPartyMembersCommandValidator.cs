@@ -6,17 +6,17 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SecretSantaService.Application.Queries.ViewPartyPairings
+namespace SecretSantaService.Application.Commands.EmailPartyMembers
 {
-    public class ViewPartyPairingsQueryValidator : RequestValidator<ViewPartyPairingsQuery>
+    public class EmailPartyMembersCommandValidator : RequestValidator<EmailPartyMembersCommand>
     {
-        public ViewPartyPairingsQueryValidator(IApplicationDbContext dbContext) : base(dbContext)
+        public EmailPartyMembersCommandValidator(IApplicationDbContext dbContext) : base(dbContext)
         {
         }
 
         protected override void ExecuteRules()
         {
-            RuleFor(q => q.Name)
+            RuleFor(p => p.PartyName)
                 .NotNull()
                 .NotEmpty()
                 .MustAsync(NameExists);

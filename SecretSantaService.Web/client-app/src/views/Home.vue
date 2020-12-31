@@ -13,9 +13,9 @@
     </v-container>
     <v-container>
       <v-row class="text-center align-center" justify="center">
-        <v-col class="entry-text mt-8" cols="12" md="6"
+        <v-col class="entry-text mt-4 mb-2" cols="12" md="6"
           ><h1 class="text-wrap">
-            Santa is out <span class="gradient">sick</span>!
+            Santa's <span class="gradient">sick</span>!
           </h1></v-col
         >
       </v-row>
