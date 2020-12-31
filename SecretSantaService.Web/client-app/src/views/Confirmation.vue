@@ -18,11 +18,15 @@
         Wanna snoop?
       </v-col>
     </v-row>
-       <v-row class="text-center align-center" justify="center">
-<v-btn elevation="2" x-large rounded color="primary"
-            to="pairings">View pairings</v-btn
-          ></v-row>
-
+    <v-row class="text-center align-center" justify="center">
+      <v-btn 
+        elevation="2" 
+        x-large 
+        rounded 
+        color="primary"
+        :to="{ name: 'pairings', query: { name } }"
+      > View pairings </v-btn>
+    </v-row>
   </v-container>
 </template>
 <script>
@@ -39,9 +43,11 @@ export default {
     const { name } = this.$route.query
     if(!name) {
       this.$router.push('form')
-    } else {
-      const response = await this.$axios.get(`/api/pairings?partyName=${name}`)
-      console.log({ response })
+    }
+  },
+  computed: {
+    name() {
+      return this.$route.query.name
     }
   }
 };
