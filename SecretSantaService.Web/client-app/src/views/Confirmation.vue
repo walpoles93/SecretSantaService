@@ -35,9 +35,13 @@ export default {
     HappySanta,
     Snow
   },
-  mounted() {
-    if(!this.$route.query.name) {
+  async mounted() {
+    const { name } = this.$route.query
+    if(!name) {
       this.$router.push('form')
+    } else {
+      const response = await this.$axios.get(`/api/pairings?partyName=${name}`)
+      console.log({ response })
     }
   }
 };
