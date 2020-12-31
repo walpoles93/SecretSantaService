@@ -3,7 +3,7 @@
     <v-toolbar class="card" flat color="primary">
       <v-icon>mdi-account</v-icon>
       <v-toolbar-title class="font-weight-light">
-        {{ name }}
+        {{ value.name }}
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
@@ -22,49 +22,31 @@
     </v-toolbar>
     <v-card-text>
       <form class="valid" @submit.prevent="submit">
-        <validation-provider
-          v-slot="{ errors }"
-          name="Name"
-          rules="required|max:24"
-        >
           <v-text-field
             :disabled="!isEditing"
             color="white"
             label="Name"
-            :error-messages="errors"
-            v-model="name"
+            :value="value.name"
+            @input="onUpdate('name', $event)"
             required
-          ></v-text-field
-        ></validation-provider>
-        <validation-provider
-          v-slot="{ errors }"
-          name="email"
-          rules="required|email"
-        >
+          ></v-text-field>
           <v-text-field
             :disabled="!isEditing"
             color="white"
             label="Address"
-            :error-messages="errors"
-            v-model="address"
+            :value="value.address"
+            @input="onUpdate('address', $event)"
             required
           ></v-text-field>
-        </validation-provider>
-        <validation-provider
-          v-slot="{ errors }"
-          name="email"
-          rules="required|email"
-        >
           <v-text-field
             class="valid"
             :disabled="!isEditing"
             color="white"
             label="Email"
-            v-model="email"
-            :error-messages="errors"
+            :value="value.email"
+            @input="onUpdate('email', $event)"
             required
           ></v-text-field>
-        </validation-provider>
       </form>
     </v-card-text>
     <v-divider></v-divider>
@@ -95,19 +77,9 @@
 }
 </style>
 <script>
-import { required, digits, email, max, regex } from "vee-validate/dist/rules";
-import { extend, ValidationProvider, setInteractionMode } from "vee-validate";
-
 export default {
   name: "PersonCard",
-  components: {
-    ValidationProvider
-  },
-  props: {
-    name: String,
-    address: String,
-    email: String
-  },
+  props: ['value'],
   data() {
     return {
       hasSaved: false,
@@ -127,39 +99,10 @@ export default {
     onDelete() {
       this.$emit("delete");
     },
-    clear() {
-      this.name = "";
-      this.email = "";
-      this.address = "";
-      this.$refs.observer.reset();
+    onUpdate(key, value) {
+      this.$emit('input', { ...this.value, [key]: value })
     }
   }
 };
 
-setInteractionMode("eager");
-
-extend("digits", {
-  ...digits,
-  message: "{_field_} needs to be {length} digits. ({_value_})"
-});
-
-extend("required", {
-  ...required,
-  message: "{_field_} cannot be empty"
-});
-
-extend("max", {
-  ...max,
-  message: "{_field_} may not be greater than {length} characters"
-});
-
-extend("regex", {
-  ...regex,
-  message: "{_field_} {_value_} does not match {regex}"
-});
-
-extend("email", {
-  ...email,
-  message: "Email must be valid"
-});
 </script>

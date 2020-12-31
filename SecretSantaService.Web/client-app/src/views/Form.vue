@@ -79,10 +79,8 @@
           <PersonCard
             v-for="(person, index) in people"
             :key="index"
-            :name="person.name"
-            :address="person.address"
-            :email="person.email"
-            @delete="onDelete(person)"
+            v-model="people[index]"
+            @delete="onDelete(index)"
           />
         </v-col>
       </v-row>
@@ -117,9 +115,8 @@ export default {
     onClickAdd() {
       this.people.push({ name: "", address: "", email: "" });
     },
-    onDelete(person) {
+    onDelete(index) {
       const people = this.people;
-      const index = people.indexOf(person);
       this.people = [...people.slice(0, index), ...people.slice(index + 1)];
     }
   },
