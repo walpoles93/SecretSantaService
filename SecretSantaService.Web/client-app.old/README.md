@@ -1,4 +1,4 @@
-# secret-santa
+# client-app
 
 ## Project setup
 ```
