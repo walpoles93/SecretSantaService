@@ -20,6 +20,13 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "HappySanta"
+};
+</script>
+
 <style lang="scss" scoped>
 .window {
   width: 260px;
@@ -946,8 +953,3 @@
   }
 }
 </style>
-<script>
-export default {
-  name: "HappySanta"
-};
-</script>

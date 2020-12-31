@@ -9,20 +9,6 @@
   </v-card>
 </template>
 
-<style lang="scss">
-.countdown-text {
-  font-family: poppins, sans-serif;
-  font-weight: 500;
-  text-transform: uppercase;
-  font-size: 3rem;
-  color: white;
-
-  &.event {
-    font-size: 1rem;
-  }
-}
-</style>
-
 <script>
 import Vue from "vue";
 
@@ -71,3 +57,17 @@ Vue.filter("two_digits", (value) => {
   return value;
 });
 </script>
+
+<style lang="scss" scoped>
+.countdown-text {
+  font-family: poppins, sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 3rem;
+  color: white;
+
+  &.event {
+    font-size: 1rem;
+  }
+}
+</style>

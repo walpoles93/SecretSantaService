@@ -40,7 +40,28 @@
     </v-container>
   </v-container>
 </template>
-<style lang="scss">
+
+<script>
+import Countdown from "../components/Countdown";
+import SickSanta from "../components/SickSanta";
+import Snow from "../components/Snow";
+
+export default {
+  name: "Home",
+
+  components: {
+    Countdown,
+    SickSanta,
+    Snow
+  },
+
+  data: () => ({
+    //
+  })
+};
+</script>
+
+<style lang="scss" scoped>
 .entry-text {
   font-family: poppins, sans-serif;
   font-weight: 700;
@@ -79,22 +100,3 @@
   }
 }
 </style>
-<script>
-import Countdown from "../components/Countdown";
-import SickSanta from "../components/SickSanta";
-import Snow from "../components/Snow";
-
-export default {
-  name: "Home",
-
-  components: {
-    Countdown,
-    SickSanta,
-    Snow
-  },
-
-  data: () => ({
-    //
-  })
-};
-</script>

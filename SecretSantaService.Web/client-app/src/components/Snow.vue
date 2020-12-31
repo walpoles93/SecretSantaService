@@ -32,7 +32,8 @@
     </div>
   </div>
 </template>
-<style lang="scss">
+
+<style lang="scss" scoped>
 /* customizable snowflake styling */
 .snowflake {
   color: #fff;
