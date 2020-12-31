@@ -21,13 +21,14 @@
       </v-btn>
     </v-toolbar>
     <v-card-text>
-      <form class="valid" @submit.prevent="submit">
+      <v-form v-model="isValid" class="valid">
           <v-text-field
             :disabled="!isEditing"
             color="white"
             label="Name"
             :value="value.name"
             @input="onUpdate('name', $event)"
+            :rules="[v => !!v || 'Name must not be empty']"
             required
           ></v-text-field>
           <v-text-field
@@ -36,6 +37,7 @@
             label="Address"
             :value="value.address"
             @input="onUpdate('address', $event)"
+            :rules="[v => !!v || 'Address must not be empty']"
             required
           ></v-text-field>
           <v-text-field
@@ -45,9 +47,10 @@
             label="Email"
             :value="value.email"
             @input="onUpdate('email', $event)"
+            :rules="[v => !!v || 'Email must not be empty']"
             required
           ></v-text-field>
-      </form>
+      </v-form>
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions>
@@ -55,7 +58,7 @@
         <v-btn color="secondary" class="text-left" @click="onDelete">
           Delete
         </v-btn>
-        <v-btn :disabled="!isEditing" color="success" @click="save">
+        <v-btn :disabled="!isEditing || !isValid" color="success" @click="save">
           Save
         </v-btn>
       </v-row>
@@ -83,8 +86,8 @@ export default {
   data() {
     return {
       hasSaved: false,
-      isEditing: null,
-      model: null
+      isEditing: false,
+      isValid: false,
     };
   },
 
